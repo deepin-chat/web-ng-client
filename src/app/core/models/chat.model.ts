@@ -1,3 +1,4 @@
+import { MessageModel } from "./message.model";
 import { UserProfileModel } from "./user.model";
 
 export enum ChatType {
@@ -10,20 +11,20 @@ export interface ChatModel {
     createdBy: string;
     createdAt: Date;
     updatedAt: Date;
-    IsPrivate: boolean;
-    groupInfo: ChatGroupInfoModel;
+    isPrivate: boolean;
+    name: string;
+    avatarBlobId: string;
+    link: string;
+    description: string;
+    lastMessage: MessageModel;
+    type: ChatType;
 }
+
 export interface ChatMemberModel {
     isAdmin: boolean;
     isOwner: boolean;
     joinedAt: Date;
     user: UserProfileModel;
-}
-export interface ChatGroupInfoModel {
-    name: string;
-    avatarBlobId: string;
-    link: string;
-    description: string;
 }
 export interface NewGroupChatModel {
     name: string;

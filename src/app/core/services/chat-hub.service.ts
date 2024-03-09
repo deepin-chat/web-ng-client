@@ -53,6 +53,7 @@ export class ChatHubService {
 
   private registerHandlers() {
     this.hubConnection?.on('new_message', (msg) => {
+      console.log(msg);
       this.messageSubject.next(msg);
     });
   }

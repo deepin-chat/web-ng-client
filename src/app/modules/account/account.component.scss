@@ -1,11 +1,12 @@
-nz-row {
+ :host {
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    nz-col{
-        min-width: 400px;
-        padding: 1rem;
-        background-color: #ffffff;
-    }
-}
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+     main {
+         min-width: 400px;
+         padding: 1rem;
+         background-color: #ffffff;
+     }
+ }

@@ -1,0 +1,42 @@
+<!-- <nav>
+  <a class="section-link">
+    <mat-icon>forum</mat-icon>
+    <div>
+      Chats
+    </div>
+  </a>
+  <a class="section-link">
+    <mat-icon>person</mat-icon>
+    <div>
+      Contacts
+    </div>
+  </a>
+  <a class="section-link">
+    <mat-icon>settings</mat-icon>
+    <div>
+      Settings
+    </div>
+  </a>
+</nav> -->
+<mat-nav-list>
+  <a mat-list-item [routerLink]="['/chats']" routerLinkActive="selected">
+    <mat-icon>forum</mat-icon>
+  </a>
+  <a mat-list-item [routerLink]="['/search']">
+    <mat-icon matSuffix>search</mat-icon>
+  </a>
+  <a mat-list-item [routerLink]="['/contacts']">
+    <mat-icon>group</mat-icon>
+  </a>
+</mat-nav-list>
+<mat-nav-list>
+  <mat-list-item (click)="switchTheme()">
+    <mat-icon>{{ theme === 'dark' ? 'light_mode':'dark_mode' }}</mat-icon>
+  </mat-list-item>
+  <a mat-list-item [routerLink]="['/profile']">
+    <mat-icon>person</mat-icon>
+  </a>
+  <a mat-list-item [routerLink]="['/settings']">
+    <mat-icon>settings</mat-icon>
+  </a>
+</mat-nav-list>

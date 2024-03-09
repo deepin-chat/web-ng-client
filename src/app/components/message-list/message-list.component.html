@@ -1,0 +1,27 @@
+<cdk-virtual-scroll-viewport #scrollViewport *ngIf="dataSource" appendOnly itemSize="auto" class="message-viewport"
+  cdkScrollable>
+  <div class="message-loading" *ngIf="dataSource.isLoading">
+    <mat-spinner diameter="24"></mat-spinner>
+  </div>
+  <div class="message-list">
+    <div *cdkVirtualFor="let item of dataSource" class="message-item"
+      [ngClass]="userId === item.from.userId ? 'message-reverse':''">
+      <img class="message-user-avatar"
+        src="https://assets.materialup.com/uploads/5b045613-638c-41d9-9b7c-5f6c82926c6e/preview.png">
+
+      <div class="message-container">
+        <div class="message-from">
+          <span>
+            {{ item.from?.displayName | subString:64 }}
+          </span>
+          <small>
+            {{item.createdAt | shortDate}}
+          </small>
+        </div>
+        <div class="message">
+          {{ item.text }}
+        </div>
+      </div>
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>

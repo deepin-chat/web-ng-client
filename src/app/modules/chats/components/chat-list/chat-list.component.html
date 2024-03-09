@@ -1,0 +1,23 @@
+<!-- <mat-toolbar>
+  <form class="search-form" *ngIf="form" [formGroup]="form" (ngSubmit)="onQuery()">
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput formControlName="keywords">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </form>
+</mat-toolbar> -->
+<mat-nav-list>
+  <mat-list-item *ngFor="let chat of list;let i=index" [activated]="i === 5" [ngClass]="i===5 ?'list-item-selected':''"
+    [routerLink]="[chat.id,'room']">
+    <img matListItemAvatar src="https://psc2.cf2.poecdn.net/assets/_next/static/media/assistant.b077c338.svg" alt="...">
+    <h3 matListItemTitle>{{chat.name}}</h3>
+    <p matListItemLine *ngIf="chat.lastMessage">
+      <span *ngIf="chat.type !== 1">{{chat.lastMessage.from?.displayName}} - </span>
+      <span class="demo-2"> {{ chat.lastMessage.text | subString:20  }} </span>
+    </p>
+    <small matListItemMeta>
+      {{chat.updatedAt| shortDate}}
+    </small>
+  </mat-list-item>
+</mat-nav-list>

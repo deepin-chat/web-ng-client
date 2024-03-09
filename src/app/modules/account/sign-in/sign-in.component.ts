@@ -11,6 +11,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class SignInComponent implements OnInit {
   form?: FormGroup;
   isLoading = false;
+  showPassword = false;
   constructor(
     private route: ActivatedRoute,
     private router: Router,

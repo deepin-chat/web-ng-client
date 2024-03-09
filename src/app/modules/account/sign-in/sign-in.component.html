@@ -1,34 +1,19 @@
-<form *ngIf="form" nz-form [formGroup]="form" class="login-form" (ngSubmit)="onSubmit()">
-  <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your email!">
-      <nz-input-group nzPrefixIcon="user">
-        <input type="email" nz-input formControlName="email" placeholder="Email" />
-      </nz-input-group>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your Password!">
-      <nz-input-group nzPrefixIcon="lock">
-        <input type="password" nz-input formControlName="password" placeholder="Password" />
-      </nz-input-group>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item nzJustify="space-between">
-    <div nz-col>
-      <label nz-checkbox>
-        <span>Remember me</span>
-      </label>
-    </div>
-    <div nz-col>
-      <a class="login-form-forgot">Forgot password</a>
-    </div>
-  </nz-form-item>
-
-  <div nz-row>
-    <div nz-col>
-      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Sign in</button>
-      Or
-      <a>Sign up now!</a>
-    </div>
+<form *ngIf="form" nz-form [formGroup]="form" class="sign-form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input type="email" matInput formControlName="email" placeholder="Email">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Enter your password</mat-label>
+    <input formControlName="password" matInput [type]="showPassword ? 'text' : 'password'">
+    <button mat-icon-button matSuffix (click)="showPassword = !showPassword" [attr.aria-label]="'Show password'"
+      [attr.aria-pressed]="!showPassword">
+      <mat-icon>{{showPassword ? 'visibility':'visibility_off' }}</mat-icon>
+    </button>
+  </mat-form-field>
+  <div class="form-submit">
+    <button [disabled]="isLoading || form.invalid" mat-flat-button color="primary" type="submit">Sign In</button>
+    <span>Or</span>
+    <a>Sign up now!</a>
   </div>
 </form>
