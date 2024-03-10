@@ -6,6 +6,7 @@ import { AuthService } from './services/auth.service';
 import { ChatService } from './services/chat.service';
 import { MessageService } from './services/message.service';
 import { UserService } from './services/user.service';
+import { LayoutService } from './services/layout.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +17,8 @@ import { UserService } from './services/user.service';
     ChatHubService,
     ChatService,
     MessageService,
-    UserService
+    UserService,
+    LayoutService
   ]
 })
 export class CoreModule { }

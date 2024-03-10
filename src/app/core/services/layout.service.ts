@@ -8,11 +8,11 @@ export enum ThemeType {
 
 @Injectable()
 export class LayoutService {
-  private _theme: BehaviorSubject<ThemeType> = new BehaviorSubject<ThemeType>(ThemeType.dark);
+  private _theme: BehaviorSubject<ThemeType> = new BehaviorSubject<ThemeType>(ThemeType.light);
   public readonly theme = this._theme.asObservable();
   constructor() { }
 
-  switchTheme(value: ThemeType) {
-    this._theme.next(value);
+  switchTheme() {
+    this._theme.next(this._theme.value === ThemeType.dark ? ThemeType.light : ThemeType.dark);
   }
 }

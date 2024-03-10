@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutService, ThemeType } from '../../services/layout.service';
+import { ThemeType, LayoutService } from '../../../../core/services/layout.service';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { AddGroupChatComponent } from '../../../../components/add-group-chat/add-group-chat.component';
+import { AddChannelComponent } from '../../../../components/add-channel/add-channel.component';
+import { AddPeopleComponent } from '../../../../components/add-people/add-people.component';
 
 @Component({
   selector: 'app-navigation',
@@ -7,23 +12,47 @@ import { LayoutService, ThemeType } from '../../services/layout.service';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-
   theme: ThemeType = ThemeType.light;
   constructor(
+    private router: Router,
+    public dialog: MatDialog,
     private layoutService: LayoutService
   ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.layoutService.theme.subscribe(res => {
       this.theme = res;
-      const body = document.body;
-      body.className = res === ThemeType.dark ? 'dark-theme' : 'light-theme';
     })
   }
 
   switchTheme() {
-    const nextTheme = this.theme === ThemeType.dark ? ThemeType.light : ThemeType.dark;
-    this.layoutService.switchTheme(nextTheme);
+    this.layoutService.switchTheme();
+  }
+
+  isActive(route: string): boolean {
+    return this.router.isActive(route, { paths: 'exact', queryParams: 'exact', fragment: 'ignored', matrixParams: 'ignored' });
+  }
+
+  onAddGroup() {
+    const dialogRef = this.dialog.open(AddGroupChatComponent, {
+      data: null,
+      minWidth: '400px'
+    });
+  }
+
+  onAddChannel() {
+    const dialogRef = this.dialog.open(AddChannelComponent, {
+      data: null,
+      minWidth: '400px'
+    });
+  }
+
+  
+  onAddPeople() {
+    const dialogRef = this.dialog.open(AddPeopleComponent, {
+      data: null,
+      minWidth: '400px'
+    });
   }
 }

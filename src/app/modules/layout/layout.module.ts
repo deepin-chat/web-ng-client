@@ -5,11 +5,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { SharedModule } from '../../shared/shared.module';
 import { LayoutComponent } from './layout.component';
 import { RouterLink } from '@angular/router';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { LayoutService } from './services/layout.service';
 
 @NgModule({
   imports: [
@@ -20,6 +22,8 @@ import { LayoutService } from './services/layout.service';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatMenuModule,
+    MatDialogModule,
     SharedModule
   ],
   declarations: [
@@ -28,9 +32,6 @@ import { LayoutService } from './services/layout.service';
   ],
   exports: [
     LayoutComponent
-  ],
-  providers: [
-    LayoutService
   ]
 })
 export class LayoutModule { }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { LoginModel, TokenResponse } from '../models/identity.model';
 
@@ -11,11 +11,13 @@ const ACCOUNTS_URL = `${environment.apiRoot}/api/v1/accounts`;
 @Injectable()
 export class AuthService {
   private _tokenSubject: BehaviorSubject<TokenResponse>;
+  public token: Observable<TokenResponse>;
   constructor(
     private httpClient: HttpClient
   ) {
     const token = localStorage.getItem(TOKEN_NAME);
     this._tokenSubject = new BehaviorSubject<any>(token ? JSON.parse(token) : null);
+    this.token = this._tokenSubject.asObservable();
   }
 
   getToken() {

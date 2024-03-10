@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Add people</h2>
+<mat-dialog-content *ngIf="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Email address</mat-label>
+      <input type="email" formControlName="email" matInput>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button type="submit" mat-button (click)="onSubmit()" [disabled]="isLoading || form?.invalid">Save</button>
+</mat-dialog-actions>

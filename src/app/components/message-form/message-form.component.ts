@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { ChatHubService } from '../../core/services/chat-hub.service';
 
 @Component({
   selector: 'app-message-form',
@@ -32,7 +33,8 @@ export class MessageFormComponent implements OnInit, OnChanges {
   isLoading = false;
   constructor(
     private fb: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private chatHub: ChatHubService
   ) { }
 
   ngOnInit() {
@@ -56,17 +58,26 @@ export class MessageFormComponent implements OnInit, OnChanges {
   onSubmit() {
     if (!this.form || this.form?.invalid || this.isLoading) return;
     this.isLoading = true;
-    this.messageService.send(this.form.value)
-      .subscribe({
-        next: (msg) => {
-          this.form?.reset({
-            chatId: this.chatId
-          })
-        },
-        complete: () => {
-          this.isLoading = false;
-        }
+    this.chatHub.send(this.form.value)
+      .then(() => {
+        this.form?.reset({
+          chatId: this.form.value.chatId
+        })
       })
+      .finally(() => {
+        this.isLoading = false;
+      });
+    // this.messageService.send(this.form.value)
+    //   .subscribe({
+    //     next: (msg) => {
+    //       this.form?.reset({
+    //         chatId: this.chatId
+    //       })
+    //     },
+    //     complete: () => {
+    //       this.isLoading = false;
+    //     }
+    //   })
   }
 
   enterForm(event: any) {

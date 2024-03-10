@@ -1,7 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit, inject } from '@angular/core';
 import { Observable, map, shareReplay } from 'rxjs';
-import { ChatHubService } from '../../core/services/chat-hub.service';
 
 @Component({
   selector: 'app-layout',
@@ -11,7 +10,6 @@ import { ChatHubService } from '../../core/services/chat-hub.service';
 export class LayoutComponent implements OnInit {
 
   constructor(
-    private chatHubService: ChatHubService
   ) { }
 
   private breakpointObserver = inject(BreakpointObserver);
@@ -23,7 +21,6 @@ export class LayoutComponent implements OnInit {
     );
 
   ngOnInit() {
-    this.chatHubService.start();
   }
 
 }

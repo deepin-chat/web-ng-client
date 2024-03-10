@@ -22,4 +22,8 @@ export class ChatService {
   createGroupChat(payload: NewGroupChatModel) {
     return this.httpClient.post<ChatModel>(`${CHATS_URL}/group`, payload);
   }
+
+  createChannel(payload: NewGroupChatModel) {
+    return this.httpClient.post<ChatModel>(`${CHATS_URL}/channel`, payload);
+  }
 }

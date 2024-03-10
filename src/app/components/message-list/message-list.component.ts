@@ -64,7 +64,7 @@ export class MessageListComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.userService.get()
+    this.userService.current
       .subscribe(res => {
         this.userId = res.userId;
       })

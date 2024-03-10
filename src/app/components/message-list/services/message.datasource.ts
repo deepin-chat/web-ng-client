@@ -28,7 +28,7 @@ export class MessageDataSource extends DataSource<MessageModel> {
         private chatHubService: ChatHubService
     ) {
         super();
-        this.chatHubService.messageObservable.subscribe(msg => {
+        this.chatHubService.message.subscribe(msg => {
             if (msg.chatId === this.chatId) {
                 this.updateData([msg]);
                 this._newMessageSubject.next();

@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Add group</h2>
+<mat-dialog-content *ngIf="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Link</mat-label>
+      <input formControlName="link" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea formControlName="description" matInput></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button type="submit" mat-button (click)="onSubmit()" [disabled]="isLoading || form?.invalid">Save</button>
+</mat-dialog-actions>

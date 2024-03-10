@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChatModel } from '../../../../core/models/chat.model';
 import { ChatService } from '../../../../core/services/chat.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ChatHubService } from '../../../../core/services/chat-hub.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -14,10 +15,14 @@ export class ChatListComponent implements OnInit {
   form?: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private chatHub: ChatHubService
   ) { }
 
   ngOnInit() {
+    this.chatHub.chat.subscribe(() => {
+      this.onQuery();
+    });
     this.form = this.fb.group({
       keywords: this.fb.control('', [Validators.maxLength(256)])
     });

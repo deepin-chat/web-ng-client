@@ -21,5 +21,5 @@ export interface MessageQuery extends PagedQuery {
 export interface MessageRequest {
     chatId: number;
     text: string;
-    replyTo: string;
+    replyTo?: string;
 }
