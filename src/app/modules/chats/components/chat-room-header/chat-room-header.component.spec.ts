@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { AddChannelComponent } from './add-channel.component';
+import { ChatRoomHeaderComponent } from './chat-room-header.component';
 
-describe('AddChannelComponent', () => {
-  let component: AddChannelComponent;
-  let fixture: ComponentFixture<AddChannelComponent>;
+describe('ChatRoomHeaderComponent', () => {
+  let component: ChatRoomHeaderComponent;
+  let fixture: ComponentFixture<ChatRoomHeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddChannelComponent ]
+      declarations: [ ChatRoomHeaderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddChannelComponent);
+    fixture = TestBed.createComponent(ChatRoomHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

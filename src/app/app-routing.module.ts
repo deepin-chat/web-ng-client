@@ -23,11 +23,6 @@ export const routes: Routes = [
         loadChildren: () => import('./modules/search/search.module').then(m => m.SearchModule)
     },
     {
-        path: 'contacts',
-        canActivate: [authGuard],
-        loadChildren: () => import('./modules/contacts/contacts.module').then(m => m.ContactsModule)
-    },
-    {
         path: 'profile',
         canActivate: [authGuard],
         loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule)

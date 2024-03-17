@@ -37,18 +37,10 @@
       <mat-icon>group</mat-icon>
       Add group
     </button>
-    <button mat-menu-item (click)="onAddChannel()">
-      <mat-icon>campaign</mat-icon>
-      Add channel
-    </button>
   </mat-menu>
 
   <a mat-list-item [routerLink]="['/search']" [activated]="isActive('search')">
     <mat-icon matSuffix>search</mat-icon>
-  </a>
-
-  <a mat-list-item [routerLink]="['/contacts']" [activated]="isActive('contacts')">
-    <mat-icon>group</mat-icon>
   </a>
 </mat-nav-list>
 <mat-nav-list>

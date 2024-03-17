@@ -3,17 +3,15 @@
   <div class="message-loading" *ngIf="dataSource.isLoading">
     <mat-spinner diameter="24"></mat-spinner>
   </div>
-  <div class="message-list">
+  <!-- <div class="message-list">
     <div *cdkVirtualFor="let item of dataSource" class="message-item"
       [ngClass]="userId === item.from.userId ? 'message-reverse':''">
-      <img class="message-user-avatar"
-        src="https://assets.materialup.com/uploads/5b045613-638c-41d9-9b7c-5f6c82926c6e/preview.png">
-
+      <img class="message-user-avatar" [src]="item.fromUser.picture">
       <div class="message-container">
         <div class="message-from">
-          <span>
-            {{ item.from?.displayName | subString:64 }}
-          </span>
+          <small>
+            {{ item.fromUser?.name | subString:64 }}
+          </small>
           <small>
             {{item.createdAt | shortDate}}
           </small>
@@ -23,5 +21,30 @@
         </div>
       </div>
     </div>
+  </div> -->
+  <!-- <mat-list>
+    <mat-list-item *cdkVirtualFor="let item of dataSource">
+      <img matListItemAvatar [src]="item.fromUser.picture">
+      <div matListItemTitle>{{item.fromUser?.name | subString:32}}</div>
+      <p matListItemLine> 
+        {{ item.text }}
+      </p>
+    </mat-list-item>
+  </mat-list> -->
+  <div class="messages">
+    <mat-card *cdkVirtualFor="let item of dataSource" appearance="outlined" [ngClass]="userId === item.from ? 'reverse-card':''">
+      <mat-card-header>
+        <img mat-card-avatar [src]="item.fromUser.picture">
+        <mat-card-title>
+          <small>{{item.fromUser?.name | subString:32}}</small>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <small>{{item.createdAt | date }} </small>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        {{ item.text }}
+      </mat-card-content>
+    </mat-card>
   </div>
 </cdk-virtual-scroll-viewport>

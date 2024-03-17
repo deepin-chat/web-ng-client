@@ -1,12 +1,14 @@
 import { CdkVirtualScrollViewport, ScrollDispatcher, ScrollingModule } from '@angular/cdk/scrolling';
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 import { MessageDataSource } from './services/message.datasource';
 import { MessageService } from '../../core/services/message.service';
 import { MessageModel } from '../../core/models/message.model';
 import { SharedModule } from '../../shared/shared.module';
 import { ChatHubService } from '../../core/services/chat-hub.service';
 import { UserService } from '../../core/services/user.service';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-message-list',
@@ -17,11 +19,13 @@ import { UserService } from '../../core/services/user.service';
   imports: [
     ScrollingModule,
     MatProgressSpinnerModule,
+    MatListModule,
+    MatCardModule,
     SharedModule
   ]
 })
 export class MessageListComponent implements OnInit, OnChanges {
-  @Input() chatId: number = 0;
+  @Input() chatId?: number;
   @ViewChild('scrollViewport') virtualScrollViewport?: CdkVirtualScrollViewport;
   userId?: string;
   dataSource?: MessageDataSource;
@@ -52,8 +56,8 @@ export class MessageListComponent implements OnInit, OnChanges {
       this.scrollToBottom();
     }, 200);
   }
-  private buildDataSource(id: number) {
-    this.dataSource = new MessageDataSource(id, this.messageService, this.chatHubService);
+  private buildDataSource(chatId: number) {
+    this.dataSource = new MessageDataSource(chatId, this.messageService, this.chatHubService);
     // this.dataSource?.newMessagePushed.subscribe(() => {
     //   const element = this.virtualScrollViewport?.elementRef.nativeElement;
     //   if (element && ((element.scrollHeight - element.scrollTop) >= element.clientHeight)) {
@@ -66,9 +70,11 @@ export class MessageListComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.userService.current
       .subscribe(res => {
-        this.userId = res.userId;
-      })
-    this.buildDataSource(this.chatId);
+        this.userId = res.id;
+      });
+    if (this.chatId) {
+      this.buildDataSource(this.chatId);
+    }
   }
   private scrollToBottom() {
     this.virtualScrollViewport?.scrollTo({

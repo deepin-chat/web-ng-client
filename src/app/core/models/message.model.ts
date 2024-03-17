@@ -1,5 +1,5 @@
 import { PagedQuery } from "./pagination.model";
-import { UserProfileModel } from "./user.model";
+import { UserProfile } from "./user.model";
 
 export interface MessageModel {
     id: string;
@@ -9,7 +9,8 @@ export interface MessageModel {
     isRead: boolean;
     createdAt: Date;
     updateAt: Date;
-    from: UserProfileModel;
+    from: string;
+    fromUser: UserProfile;
 }
 
 export interface MessageQuery extends PagedQuery {

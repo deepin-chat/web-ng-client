@@ -18,7 +18,7 @@ export class MessageService {
     });
   }
 
-  send(payload: MessageRequest) {
-    return this.httpClient.post<MessageModel>(MESSAGES_URL, payload);
+  sendMessage(request: MessageRequest) {
+    return this.httpClient.post<MessageModel>(MESSAGES_URL, request);
   }
 }

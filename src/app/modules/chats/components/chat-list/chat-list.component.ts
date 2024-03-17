@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatModel } from '../../../../core/models/chat.model';
+import { ChatListItem } from '../../../../core/models/chat.model';
 import { ChatService } from '../../../../core/services/chat.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ChatHubService } from '../../../../core/services/chat-hub.service';
@@ -10,7 +10,7 @@ import { ChatHubService } from '../../../../core/services/chat-hub.service';
   styleUrls: ['./chat-list.component.scss']
 })
 export class ChatListComponent implements OnInit {
-  list: ChatModel[] = [];
+  chats: ChatListItem[] = [];
   isLoading = false;
   form?: FormGroup;
   constructor(
@@ -20,7 +20,7 @@ export class ChatListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.chatHub.chat.subscribe(() => {
+    this.chatHub.chatChanged.subscribe(() => {
       this.onQuery();
     });
     this.form = this.fb.group({
@@ -32,9 +32,9 @@ export class ChatListComponent implements OnInit {
   onQuery() {
     if (this.isLoading) return;
     this.isLoading = true;
-    this.chatService.getChats().subscribe({
+    this.chatService.getAllChats().subscribe({
       next: (res) => {
-        this.list = res;
+        this.chats = res;
       },
       complete: () => {
         this.isLoading = false;

@@ -39,4 +39,9 @@ body {
 
 :root {
   --default-gap: 8px;
+  --default-padding: 8px;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }

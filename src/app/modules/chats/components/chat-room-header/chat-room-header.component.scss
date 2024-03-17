@@ -1,0 +1,11 @@
+.chat-avatar {
+    img {
+        width: var(--mdc-list-list-item-leading-avatar-size);
+        height: var(--mdc-list-list-item-leading-avatar-size);
+        border-radius: var(--mdc-list-list-item-leading-avatar-shape);
+        background-color: var(--mdc-list-list-item-leading-avatar-color);
+    }
+
+    padding-right: var(--default-padding);
+    padding-left: var(--default-padding);
+}

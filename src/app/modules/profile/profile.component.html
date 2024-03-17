@@ -1,3 +1,45 @@
 <app-layout>
-  Profile works
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>DisplayN ame</mat-label>
+      <input formControlName="nickName" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>First name</mat-label>
+      <input formControlName="firstName" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last name</mat-label>
+      <input formControlName="lastName" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Full name</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Picture</mat-label>
+      <input formControlName="pictureId" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Gender</mat-label>
+      <textarea formControlName="gender" matInput></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Bio</mat-label>
+      <textarea formControlName="bio" matInput></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>ZoneInfo</mat-label>
+      <input formControlName="zoneInfo" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Local</mat-label>
+      <input formControlName="local" matInput>
+    </mat-form-field>
+    <button [disabled]="isLoading || form.invalid" mat-flat-button color="primary" type="submit">Save</button>
+  </form>
 </app-layout>

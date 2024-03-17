@@ -1,35 +1,48 @@
 import { MessageModel } from "./message.model";
-import { UserProfileModel } from "./user.model";
+import { UserModel } from "./user.model";
 
 export enum ChatType {
-    private = 1,
-    group = 2,
-    channel = 3
+    group = 1,
+    direct = 2
+}
+export interface ChatListItem {
+    id: number;
+    name: string;
+    picture: string;
+    updateAt: Date;
+    type: ChatType;
+    lastMessage: MessageModel;
 }
 export interface ChatModel {
     id: number;
-    createdBy: string;
+    type: ChatType;
     createdAt: Date;
-    updatedAt: Date;
-    isPrivate: boolean;
+    updateAt: Date;
+    members: ChatMemberModel[];
+    chatInfo: ChatInfo;
+}
+export interface ChatMemberModel {
+    userId: string;
+    createdAt?: Date;
+    user: UserModel;
+}
+export interface DirectChatRequest {
+    userId: string;
+}
+export interface ChatInfo {
     name: string;
-    avatarBlobId: string;
     link: string;
     description: string;
-    lastMessage: MessageModel;
-    type: ChatType;
+    picture: string;
+    isPrivate: boolean;
+    ownerId: string;
+    adminIds: string[]
 }
 
-export interface ChatMemberModel {
-    isAdmin: boolean;
-    isOwner: boolean;
-    joinedAt: Date;
-    user: UserProfileModel;
-}
-export interface NewGroupChatModel {
+export interface ChatInfoRequest {
     name: string;
-    avatarBlobId: string;
     link: string;
     description: string;
+    pictureId: string;
     isPrivate: boolean;
 }

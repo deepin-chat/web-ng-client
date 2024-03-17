@@ -27,7 +27,7 @@ import { ChatHubService } from '../../core/services/chat-hub.service';
   ]
 })
 export class MessageFormComponent implements OnInit, OnChanges {
-  @Input() chatId = 0;
+  @Input() chatId?: number;
   @Input() message?: MessageRequest;
   form?: FormGroup;
   isLoading = false;
@@ -38,7 +38,9 @@ export class MessageFormComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    this.buildForm(this.chatId, this.message);
+    if (this.chatId) {
+      this.buildForm(this.chatId, this.message);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {

@@ -1,0 +1,24 @@
+<ng-container *ngIf="chat">
+  <mat-toolbar *ngIf="chat.type === 1">
+    <div class="chat-avatar">
+      <mat-icon *ngIf="!chat.chatInfo.picture">user</mat-icon>
+      <img *ngIf="chat.chatInfo.picture" [src]="chat.chatInfo.picture">
+    </div>
+    <span>{{ chat.chatInfo.name }}</span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-toolbar *ngIf="chat.type === 2">
+    <div class="chat-avatar">
+      <mat-icon *ngIf="!chatUser?.profile?.picture"> user</mat-icon>
+      <img *ngIf="chatUser?.profile?.picture" [src]="chatUser?.profile?.picture">
+    </div>
+    <span>{{ chatUser?.profile?.name }}</span>
+    <span class="spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+</ng-container>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { ChatModel, NewGroupChatModel } from '../models/chat.model';
+import { ChatInfoRequest, ChatListItem, ChatModel, DirectChatRequest } from '../models/chat.model';
 
 const CHATS_URL = `${environment.apiRoot}/api/v1/chats`;
 @Injectable()
@@ -11,19 +11,23 @@ export class ChatService {
     private httpClient: HttpClient
   ) { }
 
-  getChats() {
-    return this.httpClient.get<ChatModel[]>(CHATS_URL);
+  getAllChats() {
+    return this.httpClient.get<ChatListItem[]>(CHATS_URL);
   }
 
-  getChatById(id: number) {
+  getById(id: number) {
     return this.httpClient.get<ChatModel>(`${CHATS_URL}/${id}`);
   }
 
-  createGroupChat(payload: NewGroupChatModel) {
-    return this.httpClient.post<ChatModel>(`${CHATS_URL}/group`, payload);
+  createGroupChat(request: ChatInfoRequest) {
+    return this.httpClient.post<ChatModel>(`${CHATS_URL}/group`, request);
   }
 
-  createChannel(payload: NewGroupChatModel) {
-    return this.httpClient.post<ChatModel>(`${CHATS_URL}/channel`, payload);
+  createDirectChat(request: DirectChatRequest) {
+    return this.httpClient.post<ChatModel>(`${CHATS_URL}/direct`, request);
+  }
+
+  delete(id: number) {
+    return this.httpClient.delete<void>(`${CHATS_URL}/${id}`);
   }
 }

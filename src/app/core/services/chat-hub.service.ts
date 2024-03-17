@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpTransportType, HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { AuthService } from './auth.service';
 import { MessageModel, MessageRequest } from '../models/message.model';
-import { ChatModel } from '../models/chat.model';
-
 const CHATS_HUB_URL = `${environment.apiRoot}/hubs/chat`;
 @Injectable()
 export class ChatHubService {
@@ -13,8 +11,8 @@ export class ChatHubService {
   public message = this._message.asObservable();
 
 
-  private _chat = new Subject<ChatModel>();
-  public chat = this._chat.asObservable();
+  private _chatChanged = new Subject<void>();
+  public chatChanged = this._chatChanged.asObservable();
   private hubConnection?: HubConnection;
   constructor(
     private authService: AuthService,
@@ -59,20 +57,21 @@ export class ChatHubService {
 
   private registerHandlers() {
     this.hubConnection?.on('new_message', (res) => {
+      console.log(res);
       this._message.next(res);
     });
     this.hubConnection?.on('new_chat', (res) => {
-      this._chat.next(res);
+      this._chatChanged.next();
     });
   }
 
-  send(payload: MessageRequest) {
+  send(request: MessageRequest) {
     return new Promise((res, rej) => {
       if (!this.hubConnection) {
         rej();
         return;
       }
-      this.hubConnection?.invoke('SendMessage', payload).then(() => {
+      this.hubConnection?.invoke('SendMessage', request).then(() => {
         res(null);
       })
     });

@@ -3,7 +3,6 @@ import { ThemeType, LayoutService } from '../../../../core/services/layout.servi
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddGroupChatComponent } from '../../../../components/add-group-chat/add-group-chat.component';
-import { AddChannelComponent } from '../../../../components/add-channel/add-channel.component';
 import { AddPeopleComponent } from '../../../../components/add-people/add-people.component';
 
 @Component({
@@ -41,14 +40,7 @@ export class NavigationComponent implements OnInit {
     });
   }
 
-  onAddChannel() {
-    const dialogRef = this.dialog.open(AddChannelComponent, {
-      data: null,
-      minWidth: '400px'
-    });
-  }
 
-  
   onAddPeople() {
     const dialogRef = this.dialog.open(AddPeopleComponent, {
       data: null,

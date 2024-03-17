@@ -1,9 +1,0 @@
-<ng-container *ngIf="chat">
-  <mat-toolbar>
-    <span>
-      {{chat.name }}
-    </span>
-  </mat-toolbar>
-  <app-message-list [chatId]="chat.id"></app-message-list>
-  <app-message-form [chatId]="chat.id"></app-message-form>
-</ng-container>

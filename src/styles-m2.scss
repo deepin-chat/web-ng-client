@@ -44,9 +44,6 @@ $dark-theme: mat.define-dark-theme((color: (primary: $dark-theme-primary,
 }
 
 /* You can add global styles to this file, and also import other style files */
-
-
-
 html,
 body {
   height: 100vh;
@@ -55,4 +52,13 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --default-gap: 8px;
+  --default-padding: 8px;
+}
+
+.spacer {
+  flex: 1 1 auto;
 }

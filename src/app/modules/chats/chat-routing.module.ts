@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ChatsComponent } from './chats.component';
-import { ChatRoomComponent } from './chat-room/chat-room.component';
+import { RoomComponent } from './room/room.component';
 
 export const routes: Routes = [
     {
@@ -10,7 +10,7 @@ export const routes: Routes = [
         children: [
             {
                 path: ':id/room',
-                component: ChatRoomComponent
+                component: RoomComponent
             }
         ]
     },
